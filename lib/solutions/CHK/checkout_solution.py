@@ -32,7 +32,7 @@ def min_postive(k):
 
 def group_offer(group_qts): # static
     # [50 7 8 6 34]
-    if group_qts.count(0) == 3:
+    if group_qts.count(0) >= 3:
         return 0
 
     min_num = min_postive(group_qts)
@@ -86,8 +86,8 @@ def checkout(skus):
 
         "I": 35,
         "J": 60,
-        "K": 80,
-        "2K": 150,
+        "K": 70,
+        "2K": 120,
         "L": 90,
         "M": 15,
         "N": 40,
@@ -97,7 +97,7 @@ def checkout(skus):
         "Q": 30,
         "3Q": 80,
         "R": 50,
-        "S": 30,
+        "S": 20,
         "T": 20,
         "U": 40,
         "4U": 120,
@@ -105,9 +105,9 @@ def checkout(skus):
         "2V": 90,
         "3V": 130,
         "W": 20,
-        "X": 90,
-        "Y": 10,
-        "Z": 50,
+        "X": 17,
+        "Y": 20,
+        "Z": 21,
         "Group": 45
     }
 
@@ -144,5 +144,6 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
