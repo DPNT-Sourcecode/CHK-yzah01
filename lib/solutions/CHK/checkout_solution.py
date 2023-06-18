@@ -107,8 +107,8 @@ def checkout(skus):
         "W": 20,
         "X": 90,
         "Y": 10,
-        "Z": 50
-
+        "Z": 50,
+        "Group": 45
     }
 
     other_item_free(sku_qtys, "E", 2, "B")
@@ -132,11 +132,11 @@ def checkout(skus):
     num_groups = group_offer(group_qts)
 
     sku_qtys["Group"] = num_groups
-    sku_qtys["Z"] = num_groups
-    sku_qtys["S"] = num_groups
-    sku_qtys["T"] = num_groups
-    sku_qtys["Y"] = num_groups
-    sku_qtys["X"] = num_groups
+    sku_qtys["Z"] = group_qts[0]
+    sku_qtys["S"] = group_qts[1]
+    sku_qtys["T"] = group_qts[2]
+    sku_qtys["Y"] = group_qts[3]
+    sku_qtys["X"] = group_qts[4]
 
 
     total_val = 0
@@ -144,4 +144,5 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
