@@ -22,7 +22,14 @@ class TestSum(unittest.TestCase):
         self.assertEqual(checkout_solution.checkout("EEEB"), 120)
         self.assertEqual(checkout_solution.checkout("EEEEBB"), 160)
 
+        self.assertEqual(checkout_solution.checkout("F"), 10)
+        self.assertEqual(checkout_solution.checkout("FF"), 20)
+        self.assertEqual(checkout_solution.checkout("FFF"), 20)
+        self.assertEqual(checkout_solution.checkout("FFFF"), 30)
+        self.assertEqual(checkout_solution.checkout("FFFFF"), 40)
+        self.assertEqual(checkout_solution.checkout("FFFFFF"), 40)
 
     def test_checkout_with_invalid_input(self):
         self.assertEqual(checkout_solution.checkout(None), -1)
         self.assertEqual(checkout_solution.checkout(1234), -1)
+

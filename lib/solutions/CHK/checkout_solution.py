@@ -14,7 +14,7 @@ def checkout(skus):
 
     sku_qtys = {}
     for item in skus:
-        if item not in {"A", "B", "C", "D", "E"}:
+        if item not in {"A", "B", "C", "D", "E", "F"}:
             return -1
         sku_qtys[item] = sku_qtys.get(item, 0) + 1
 
@@ -26,7 +26,9 @@ def checkout(skus):
         "B": 30,
         "C": 20,
         "D": 15,
-        "E": 40
+        "E": 40,
+        "F": 10,
+        "3F": 20
     }
 
     qty_5A = int(sku_qtys.get("A", 0) / 5)
@@ -48,9 +50,15 @@ def checkout(skus):
 
     sku_qtys["B"] = max(sku_qtys.get("B", 0) - (qty_2B * 2), 0)
 
+    qty_3F = int(sku_qtys.get("F", 0) / 3)
+    qty_F = sku_qtys.get("F", 0) - (qty_3F * 3)
+
+    sku_qtys["3F"] = qty_3F
+    sku_qtys["F"] = qty_F
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
