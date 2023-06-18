@@ -32,4 +32,3 @@ class TestSum(unittest.TestCase):
     def test_checkout_with_invalid_input(self):
         self.assertEqual(checkout_solution.checkout(None), -1)
         self.assertEqual(checkout_solution.checkout(1234), -1)
-
