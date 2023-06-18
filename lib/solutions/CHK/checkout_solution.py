@@ -74,7 +74,7 @@ def checkout(skus):
         "4U": 120,
         "V": 50,
         "2V": 90,
-        "3V": 120,
+        "3V": 130,
         "W": 20,
         "X": 90,
         "Y": 10,
@@ -102,5 +102,6 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
