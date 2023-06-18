@@ -40,19 +40,22 @@ def checkout(skus):
     qty_2B = int(sku_qtys.get("B", 0) / 2)
 
 
-
     sku_qtys["5A"] = qty_5A
     sku_qtys["3A"] = qty_3A
     sku_qtys["2B"] = qty_2B
 
     sku_qtys["A"] = sku_qtys.get("A", 0) - ((qty_5A * 5) + (qty_3A * 3))
-    sku_qtys["B"] = sku_qtys.get("B", 0) - (qty_2B * 2)
+
+    sku_qtys["B"] = max(sku_qtys.get("B", 0) - (qty_2B * 2), 0)
+
+    print(sku_qtys)
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
