@@ -32,20 +32,26 @@ def min_postive(k):
 
 def group_offer(group_qts): # static
     # [50 7 8 6 34]
-    if group_qts.count(0) >= 3:
-        return 0
 
-    min_num = min_postive(group_qts)
+    tot_items = sum(group_qts)
+    tot_groups = int(tot_items/3)
+    return tot_groups
 
-    counter = 0
-    for i in range(5):
-        if group_qts[i] != 0 :
-            group_qts[i] -= min_num
-            counter += 1
 
-        if counter == 3:
-            break
-    return min_num + group_offer(group_qts)
+    # if group_qts.count(0) >= 3:
+    #     return 0
+    #
+    # min_num = min_postive(group_qts)
+    #
+    # counter = 0
+    # for i in range(5):
+    #     if group_qts[i] != 0 :
+    #         group_qts[i] -= min_num
+    #         counter += 1
+    #
+    #     if counter == 3:
+    #         break
+    # return min_num + group_offer(group_qts)
 
 
 
@@ -132,6 +138,35 @@ def checkout(skus):
     num_groups = group_offer(group_qts)
 
     sku_qtys["Group"] = num_groups
+
+    rem_items = sum(group_qts) % 3
+
+    # [1 0 0 0 1]  2
+
+    # x_left = r
+
+
+    if group_qts[4] >= rem_items:
+        sku_qtys["Z"] = 0
+        sku_qtys["S"] = 0
+        sku_qtys["T"] = 0
+        sku_qtys["Y"] = 0
+        sku_qtys["X"] = rem_items
+
+    elif group_qts[1] + group_qts[2] + group_qts[3] >= rem_items:
+        sku_qtys["Z"] = 0
+        sku_qtys["S"] = rem_items
+        sku_qtys["T"] = 0
+        sku_qtys["Y"] = 0
+        sku_qtys["X"] = 1
+    else:
+        sku_qtys["Z"] = rem_items
+        sku_qtys["S"] = 0
+        sku_qtys["T"] = 0
+        sku_qtys["Y"] = 0
+        sku_qtys["X"] = 0
+
+
     sku_qtys["Z"] = group_qts[0]
     sku_qtys["S"] = group_qts[1]
     sku_qtys["T"] = group_qts[2]
@@ -144,6 +179,7 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
