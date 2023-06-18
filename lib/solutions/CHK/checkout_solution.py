@@ -141,32 +141,39 @@ def checkout(skus):
 
     rem_items = sum(group_qts) % 3
 
-    z_list = ["Z"] * group_qts[0]
-    s_list = ["S"] * group_qts[1]
-    t_list = ["T"] * group_qts[2]
-    y_list = ["Y"] * group_qts[3]
-    x_list = ["X"] * group_qts[4]
+    if rem_items != 0:
+        z_list = ["Z"] * group_qts[0]
+        s_list = ["S"] * group_qts[1]
+        t_list = ["T"] * group_qts[2]
+        y_list = ["Y"] * group_qts[3]
+        x_list = ["X"] * group_qts[4]
 
-    z_list.extend(s_list)
-    z_list.extend(t_list)
-    z_list.extend(y_list)
-    z_list.extend(x_list)
+        z_list.extend(s_list)
+        z_list.extend(t_list)
+        z_list.extend(y_list)
+        z_list.extend(x_list)
 
-    rems = z_list[-rem_items:]
+        rems = z_list[-rem_items:]
 
-    sku_qtys["Z"] = rems.count("Z")
-    sku_qtys["S"] = rems.count("S")
-    sku_qtys["T"] = rems.count("T")
-    sku_qtys["Y"] = rems.count("Y")
-    sku_qtys["X"] = rems.count("X")
+        sku_qtys["Z"] = rems.count("Z")
+        sku_qtys["S"] = rems.count("S")
+        sku_qtys["T"] = rems.count("T")
+        sku_qtys["Y"] = rems.count("Y")
+        sku_qtys["X"] = rems.count("X")
 
-    print(sku_qtys)
+    else:
+        sku_qtys["Z"] = 0
+        sku_qtys["S"] = 0
+        sku_qtys["T"] = 0
+        sku_qtys["Y"] = 0
+        sku_qtys["X"] = 0
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
