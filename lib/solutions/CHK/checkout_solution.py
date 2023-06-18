@@ -14,7 +14,7 @@ def checkout(skus):
 
     sku_qtys = {}
     for item in skus:
-        if item not in {"A", "B", "C", "D"}:
+        if item not in {"A", "B", "C", "D", "E"}:
             return -1
         sku_qtys[item] = sku_qtys.get(item, 0) + 1
 
@@ -46,4 +46,5 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
