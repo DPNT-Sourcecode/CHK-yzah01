@@ -23,7 +23,7 @@ def other_item_free(basket, base_item, qty, free_item):
 def group_offer(basket):
     valid_items = ["Z", "S", "T", "Y", "X"]
 
-    
+
 
 
 def checkout(skus):
@@ -110,6 +110,7 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
