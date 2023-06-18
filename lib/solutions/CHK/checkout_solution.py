@@ -4,7 +4,10 @@
 # skus = unicode string
 def checkout(skus):
     # AAABBCD
-    if skus == "" or skus is None:
+    if skus == "":
+        return 0
+
+    if skus is None or type(skus) is not str:
         return -1
 
     skus = list(skus)
@@ -38,6 +41,7 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
