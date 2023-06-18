@@ -179,7 +179,3 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
-
-
-
-
