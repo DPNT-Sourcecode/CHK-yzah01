@@ -141,30 +141,7 @@ def checkout(skus):
 
     rem_items = sum(group_qts) % 3
 
-    # [1 0 0 0 1]  2
-
-    # x_left = r
-
-
-    if group_qts[4] >= rem_items:
-        sku_qtys["Z"] = 0
-        sku_qtys["S"] = 0
-        sku_qtys["T"] = 0
-        sku_qtys["Y"] = 0
-        sku_qtys["X"] = rem_items
-
-    elif group_qts[1] + group_qts[2] + group_qts[3] >= rem_items:
-        sku_qtys["Z"] = 0
-        sku_qtys["S"] = rem_items
-        sku_qtys["T"] = 0
-        sku_qtys["Y"] = 0
-        sku_qtys["X"] = 1
-    else:
-        sku_qtys["Z"] = rem_items
-        sku_qtys["S"] = 0
-        sku_qtys["T"] = 0
-        sku_qtys["Y"] = 0
-        sku_qtys["X"] = 0
+    
 
 
     sku_qtys["Z"] = group_qts[0]
@@ -179,3 +156,4 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
