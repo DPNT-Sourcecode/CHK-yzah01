@@ -2,6 +2,7 @@
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+# import re
 
 def multi_offers(basket, base_item, offer_qty): # b, A, [5,3]
 
@@ -31,7 +32,9 @@ def checkout(skus):
 
     sku_qtys = {}
     for item in skus:
-        if item not in {"A", "B", "C", "D", "E", "F",}:
+        # pattern = re.compile("[A-Z]]")
+        # is_match = pattern.match(item)
+        if item not in {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"}:
             return -1
         sku_qtys[item] = sku_qtys.get(item, 0) + 1
 
@@ -99,4 +102,5 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
