@@ -3,8 +3,9 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-def multi_offers(basket, base_item, offer_qty):
-    
+def multi_offers(basket, base_item, offer_qty): # b, A, [5,3]
+
+    curr_qty = basket.get(base_item, 0)
 
 
 def checkout(skus):
@@ -66,4 +67,5 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
