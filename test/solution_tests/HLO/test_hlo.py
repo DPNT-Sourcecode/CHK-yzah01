@@ -11,6 +11,3 @@ class TestSum(unittest.TestCase):
             hello_solution.hello(123)
         self.assertTrue(ex.exception, "name should be of type str")
 
-
-
-
