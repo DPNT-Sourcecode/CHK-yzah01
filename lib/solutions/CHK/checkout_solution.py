@@ -34,8 +34,8 @@ def checkout(skus):
     qty_3A = int(item_A_left / 3)
 
     qty_free_B = int(sku_qtys.get("E", 0) / 2)
-    sku_qtys["B"] = sku_qtys["B"] - qty_free_B
 
+    sku_qtys["B"] = sku_qtys.get("B", 0) - qty_free_B
 
     qty_2B = int(sku_qtys.get("B", 0) / 2)
 
@@ -53,6 +53,7 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
 
