@@ -7,6 +7,17 @@ def multi_offers(basket, base_item, offer_qty): # b, A, [5,3]
 
     curr_qty = basket.get(base_item, 0)
 
+    for q in offer_qty:
+        sp_item = str(q) + base_item # 5A
+        sp_item_qty = int(curr_qty/q)
+        basket[sp_item] = sp_item_qty
+        curr_qty = curr_qty - (sp_item_qty * q)
+    basket[base_item] = curr_qty
+
+
+def other_item_free(basket, base_item, qty, free_item):
+    free_items_qty = int(basket.get(base_item, 0) / qty)
+    basket[free_item] = max(basket.get(free_item, 0) - free_items_qty, 0)
 
 def checkout(skus):
 
@@ -37,35 +48,16 @@ def checkout(skus):
         "3F": 20
     }
 
-    qty_5A = int(sku_qtys.get("A", 0) / 5)
-    item_A_left = sku_qtys.get("A", 0) - (qty_5A*5)
-    qty_3A = int(item_A_left / 3)
-
-    qty_free_B = int(sku_qtys.get("E", 0) / 2)
-
-    sku_qtys["B"] = max(sku_qtys.get("B", 0) - qty_free_B, 0)
-
-    qty_2B = int(sku_qtys.get("B", 0) / 2)
-
-
-    sku_qtys["5A"] = qty_5A
-    sku_qtys["3A"] = qty_3A
-    sku_qtys["2B"] = qty_2B
-
-    sku_qtys["A"] = sku_qtys.get("A", 0) - ((qty_5A * 5) + (qty_3A * 3))
-
-    sku_qtys["B"] = max(sku_qtys.get("B", 0) - (qty_2B * 2), 0)
-
-    qty_3F = int(sku_qtys.get("F", 0) / 3)
-    qty_F = sku_qtys.get("F", 0) - (qty_3F * 3)
-
-    sku_qtys["3F"] = qty_3F
-    sku_qtys["F"] = qty_F
+    other_item_free(sku_qtys, "E", 2, "B")
+    multi_offers(sku_qtys, "A", [5,3])
+    multi_offers(sku_qtys, "F", [3])
+    multi_offers(sku_qtys, "B", [2])
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
