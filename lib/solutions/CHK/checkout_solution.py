@@ -24,19 +24,20 @@ def checkout(skus):
         "D": 15
     }
 
-    offers_under_A = int(sku_qtys.get("A") / 3)
-    offers_under_B = int(sku_qtys.get("B") / 2)
+    offers_under_A = int(sku_qtys.get("A", 0) / 3)
+    offers_under_B = int(sku_qtys.get("B", 0) / 2)
 
     sku_qtys["3A"] = offers_under_A
     sku_qtys["2B"] = offers_under_B
 
-    sku_qtys["A"] = sku_qtys["A"] % 3
-    sku_qtys["B"] = sku_qtys["B"] % 2
+    sku_qtys["A"] = sku_qtys.get("A", 0) % 3
+    sku_qtys["B"] = sku_qtys.get("B", 0) % 2
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 
