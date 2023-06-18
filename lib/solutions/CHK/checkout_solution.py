@@ -2,6 +2,11 @@
 
 # noinspection PyUnusedLocal
 # skus = unicode string
+
+def multi_offers(basket, base_item, offer_qty):
+    
+
+
 def checkout(skus):
 
     if skus == "":
@@ -61,3 +66,4 @@ def checkout(skus):
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
