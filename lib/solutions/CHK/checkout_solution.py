@@ -23,11 +23,11 @@ def other_item_free(basket, base_item, qty, free_item):
 import sys
 
 def min_postive(k):
-    min = sys.ma
+    min_elem = sys.maxsize
     for e in k:
-        if e < min and e > 0:
-            min = e
-    return e
+        if min_elem > e > 0:
+            min_elem = e
+    return min_elem
 
 
 def group_offer(group_qts): # static
@@ -37,6 +37,15 @@ def group_offer(group_qts): # static
 
     min_num = min_postive(group_qts)
 
+    counter = 0
+    for i in range(5):
+        if group_qts[i] != 0 :
+            group_qts[i] -= min_num
+            counter += 1
+
+        if counter == 3:
+            break
+    return min_num + group_offer(group_qts)
 
 
 
@@ -117,10 +126,22 @@ def checkout(skus):
     multi_offers(sku_qtys, "U", [4])
     multi_offers(sku_qtys, "V", [3, 2])
 
-    group_offer(sku_qtys)
+    group_qts = [sku_qtys.get("Z", 0), sku_qtys.get("S", 0), sku_qtys.get("T", 0), sku_qtys.get("Y", 0),
+                 sku_qtys.get("X", 0)]
+
+    num_groups = group_offer(group_qts)
+
+    sku_qtys["Group"] = num_groups
+    sku_qtys["Z"] = num_groups
+    sku_qtys["S"] = num_groups
+    sku_qtys["T"] = num_groups
+    sku_qtys["Y"] = num_groups
+    sku_qtys["X"] = num_groups
+
 
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
