@@ -160,10 +160,13 @@ def checkout(skus):
     sku_qtys["Y"] = rems.count("Y")
     sku_qtys["X"] = rems.count("X")
 
+    print(sku_qtys)
+
     total_val = 0
     for item in sku_qtys:
         total_val = total_val + (sku_qtys[item] * prices[item])
 
     return total_val
+
 
 

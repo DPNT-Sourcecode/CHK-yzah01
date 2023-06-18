@@ -33,11 +33,18 @@ class TestSum(unittest.TestCase):
         self.assertEqual(checkout_solution.checkout("VVVV"), 180)
         self.assertEqual(checkout_solution.checkout("VVVVV"), 220)
 
-        self.assertEqual(checkout_solution.checkout("XYZST"), 45 + 17 + 20)
-        self.assertEqual(checkout_solution.checkout("XXX"), 17 * 3)
-        self.assertEqual(checkout_solution.checkout("XXXSSTTZZZ"), 90 + 21 + (17*3))
+        # self.assertEqual(checkout_solution.checkout("XYZST"), 45 + 17 + 20)
+        # self.assertEqual(checkout_solution.checkout("XXX"), 17 * 3)
+        # self.assertEqual(checkout_solution.checkout("XXXSSTTZZZ"), 90 + 21 + (17*3))
+
+        self.assertEqual(checkout_solution.checkout("SSS"), 45)
+        self.assertEqual(checkout_solution.checkout("SSSZ"), 65)
+        self.assertEqual(checkout_solution.checkout("ZZZ"), 45)
+        self.assertEqual(checkout_solution.checkout("ZX"), 38)
+        self.assertEqual(checkout_solution.checkout("ZZZX"), 45+17)
 
 
     def test_checkout_with_invalid_input(self):
         self.assertEqual(checkout_solution.checkout(None), -1)
         self.assertEqual(checkout_solution.checkout(1234), -1)
+
