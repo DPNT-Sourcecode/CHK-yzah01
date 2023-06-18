@@ -3,7 +3,14 @@ import unittest
 
 class TestSum(unittest.TestCase):
 
-    def test_input_below_0(self):
-        self.assertTrue(hello_solution.hello("joe"), "Hello, World!")
+    def test_hello_with_valid_name(self):
+        self.assertTrue(hello_solution.hello("Joe"), "Hello, Joe!")
+
+    def test_hello_with_invalid_name(self):
+        with self.assertRaises(ValueError) as ex:
+            hello_solution.hello(123)
+        self.assertTrue(ex.exception, "name should be of type str")
+
+
 
 
